@@ -1,3 +1,5 @@
+@import "config/variable";
+
 * {
     font-family: $font-family;
     color: $color-white;
@@ -17,7 +19,6 @@ a {
     margin-left: auto;
     margin-right: auto;
     display: flex;
-    align-items: center;
     justify-content: center;
 }
 
@@ -74,6 +75,56 @@ a {
     }
 }
 
+
+.experiences {
+    margin-top: 50px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: $color-black;
+    border-radius: $border-radius;
+    width: 100%;
+    padding: 30px;
+
+    &-title {
+        margin-bottom: 20px;
+        h2 {
+            color: $color-gold;
+        }
+    }
+
+    &-content {
+        display: flex;
+        flex-direction: column;
+
+        &-item {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+
+            &-header {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            &-description {
+                padding: 10px;
+                font-size: 13px;
+                align-self: flex-end;
+                max-width: 600px;
+
+                p {
+                    padding-top: 5px;
+                    line-height: 1.3;
+                }
+            }
+        }
+
+
+    }
+
+}
+
 .specialties {
     margin-top: 50px;
     position: relative;
@@ -84,14 +135,30 @@ a {
     width: 100%;
     padding: 30px;
 
+    &-title {
+        margin-bottom: 20px;
+        h2 {
+            color: $color-gold;
+        }
+    }
+
     &-content {
         display: flex;
         justify-content: center;
     }
 
     &-item {
+        opacity: 0.6;
         height: 60px;
         width: 60px;
+        font-size: 4rem;
+        margin-left: 10px;
+        margin-right: 10px;
+
+        &:hover {
+            font-size: 5rem;
+            opacity: 1;
+        }
     }
 }
 
