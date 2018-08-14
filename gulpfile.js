@@ -1,10 +1,11 @@
-const gulp = require('gulp')
-const browserSync = require('browser-sync').create()
-const sass = require('gulp-sass')
-const prefix = require('gulp-autoprefixer')
-const plumber = require('gulp-plumber')
-const pug = require('gulp-pug')
-const reload = browserSync.reload
+const gulp = require('gulp');
+const browserSync = require('browser-sync').create();
+const sass = require('gulp-sass');
+const prefix = require('gulp-autoprefixer');
+const plumber = require('gulp-plumber');
+const pug = require('gulp-pug');
+const imagemin = require('gulp-imagemin');
+const reload = browserSync.reload;
 
 gulp.task('browser-sync', function () {
   browserSync.init({
@@ -12,11 +13,11 @@ gulp.task('browser-sync', function () {
     server: {
       baseDir: './'
     }
-  })
-  gulp.watch('./views/**/*.pug', ['html'])
-  gulp.watch('./scss/**/*.scss', ['css'])
-  gulp.watch('./js/**/*.js', reload)
-})
+  });
+  gulp.watch('./views/**/*.pug', ['html']);
+  gulp.watch('./scss/**/*.scss', ['css']);
+  gulp.watch('./js/**/*.js', reload);
+});
 
 gulp.task('css', () => {
   return gulp.src('./scss/main.scss')
@@ -25,13 +26,19 @@ gulp.task('css', () => {
   .pipe(prefix())
   .pipe(gulp.dest('./'))
   .pipe(browserSync.stream())
-})
+});
 
 gulp.task('html', () => {
   return gulp.src('./views/*.pug')
   .pipe(pug())
   .pipe(gulp.dest('./'))
   .on('end', reload)
-})
+});
 
-gulp.task('default', ['browser-sync', 'html', 'css'])
+gulp.task('imagemin', () =>
+    gulp.src('./img/*')
+        .pipe(imagemin())
+        .pipe(gulp.dest('./img/'))
+);
+
+gulp.task('default', ['browser-sync', 'html', 'css', 'imagemin']);
