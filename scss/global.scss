@@ -1,4 +1,4 @@
-@import "config/variable";
+@import "./config/variable";
 
 * {
     font-family: $font-family;
@@ -14,12 +14,21 @@ a {
 }
 
 .container {
-    max-width: $max-width;
+    max-width: $max-width-mobile;
     height: 100vh;
     margin-left: auto;
     margin-right: auto;
     display: flex;
     justify-content: center;
+}
+
+.content{
+    max-width: 100%;
+}
+
+.main-content {
+    flex-direction: column;
+    align-items: center;
 }
 
 .main {
@@ -33,7 +42,8 @@ a {
 
     &-content {
         display: flex;
-        align-items: flex-start;
+        flex-direction: column;
+        align-items: center;
 
         &-profile {
             width: 128px;
@@ -43,7 +53,6 @@ a {
         }
 
         &-body {
-            padding-left: 50px;
             padding-top: 20px;
             max-width: 500px;
 
@@ -144,7 +153,15 @@ a {
 
     &-content {
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        overflow: auto;
+
+        .row {
+            height: 120px;
+            display: flex;
+            flex-direction: row;
+        }
     }
 
     &-item {
@@ -171,5 +188,41 @@ a {
     }
     100% {
         transform: scale(1);
+    }
+}
+
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { 
+    .container {
+        height: 100%;
+        max-width: 576px;
+    }
+
+    .content{
+        max-width: 100%;
+    }
+
+    .main-content {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { 
+    .container {
+        max-width: $max-width;
+        height: 100vh;
+    }
+
+    .main-content {
+        align-items: flex-start;
+        flex-direction: row;
+    }
+    
+    .main-content {
+        align-items: flex-start;
+        flex-direction: row;
     }
 }
